@@ -1,5 +1,5 @@
 var $tbody = document.querySelector("tbody");
-var $datetimeInput = document.querySelector("#datetime");
+var $dateInput = document.querySelector("#date");
 var $SearchBtn = document.querySelector("#search");
 
 $dtSearchBtn.addEventListener("click", handleSearch);
@@ -19,3 +19,14 @@ function renderTable() {
         }
     }
 }
+
+function handleSearch() {
+    var filterDate = $dateInput.nodeValue.trim().toLowerCase();
+    filteredSightings = data.filter(function(sighting) {
+        var sightingDate = sighting.datetime.toLowerCase();
+        return sightingDate === filterDate;
+    });
+    renderTable();
+}
+
+renderTable();
