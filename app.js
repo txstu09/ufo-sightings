@@ -2,9 +2,9 @@ var $tbody = document.querySelector("tbody");
 var $dateInput = document.querySelector("#date");
 var $SearchBtn = document.querySelector("#search");
 
-$dtSearchBtn.addEventListener("click", handleSearch);
+$SearchBtn.addEventListener("click", handleSearch);
 
-var filteredSightings = data;
+var filteredSightings = dataSet;
 
 function renderTable() {
     $tbody.innerHTML = "";
@@ -17,13 +17,14 @@ function renderTable() {
             var $cell = $row.insertCell(y);
             $cell.innerText = sighting[field];
         }
+        console.log(x);
     }
 }
 
 function handleSearch() {
-    var filterDate = $dateInput.nodeValue.trim().toLowerCase();
-    filteredSightings = data.filter(function(sighting) {
-        var sightingDate = sighting.datetime.toLowerCase();
+    var filterDate = $dateInput.nodeValue;
+    filteredSightings = dataSet.filter(function(sighting) {
+        var sightingDate = sighting.datetime;
         return sightingDate === filterDate;
     });
     renderTable();
