@@ -96,17 +96,19 @@ for(let i = 0; i < dropdownGroups.length; i++) {
 
 function dropdownFilterValue(selectID) {
     var filterValue = document.getElementById(selectID).value;
-    return [filterValue, selectID];
+    return [selectID, filterValue];
 }
 
 
 var filteredDropdownData = dataSet;
 
-function dropdownFilterData(selection) {
-    console.log(selection[0]);
-    console.log(selection[1]);
+function dropdownFilterData(selectionArray) {
+    var key = selectionArray[0];
+    var value = selectionArray[1];
+
     filteredDropdownData = dataSet.filter(function(data) {
-        var filterData = data[selection[1]];
-        return filterData == selection[0];
+        var filterData = data[key];
+        return filterData == value;
     })
+    return filteredDropdownData;
 }
