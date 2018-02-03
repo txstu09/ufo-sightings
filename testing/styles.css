@@ -1,0 +1,23 @@
+.form-control {
+  /*display: inline-block;*/
+  width: 200px;
+  /*margin-top: 50px;*/
+}
+
+label {
+  margin-top: 20px;
+}
+
+.btn {
+  margin-top: 20px;
+}
+
+select {
+  width: 100px;
+}
+
+/*
+.default-droption {
+  display: none;
+}
+*/
