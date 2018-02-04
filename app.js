@@ -17,7 +17,6 @@ function renderTable() {
             var $cell = $row.insertCell(y);
             $cell.innerText = sighting[field];
         }
-        //console.log(x);
     }
 }
 
@@ -28,8 +27,8 @@ function handleSearch() {
         renderTable();
     }
     else {
-        filteredSightings = dataSet.filter(function(test) {
-            var sightingDate = test.datetime;
+        filteredSightings = dataSet.filter(function(sighting) {
+            var sightingDate = sighting.datetime;
             //console.log(test);
             return sightingDate === filterDate;
         });

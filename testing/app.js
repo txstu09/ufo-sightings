@@ -51,6 +51,7 @@ renderTable();
     .attr("id", "newinput")
     .attr("placeholder", "newinput");
 */
+/*
 function searchMenu() {
     var fields = ["date1","city1","state1","country1","shape1"];
     for(let i = 0; i < fields.length; i++) {
@@ -63,6 +64,7 @@ function searchMenu() {
     }
 }
 searchMenu();
+*/
 
 function searchDropdown(list, name) {
     var dropdown = d3.select("#search-menu").append("select")
@@ -84,8 +86,8 @@ function searchDropdown(list, name) {
 //searchDropdown(shapes, "shape-dropdown");
 //searchDropdown(states, "state-dropdown");
 
-function dropdownListCreate(dataKey) {
-    var dropList = [...new Set(dataSet.map(item => item[dataKey]))];
+function dropdownListCreate(dataKey, dataset) {
+    var dropList = [...new Set(dataset.map(item => item[dataKey]))];
     dropList = dropList.sort();
     return dropList;
 }
@@ -102,6 +104,7 @@ function dropdownFilterValue(selectID) {
 
 var filteredDropdownData = dataSet;
 
+/*
 function dropdownFilterData(selectionArray) {
     var key = selectionArray[0];
     var value = selectionArray[1];
@@ -110,5 +113,21 @@ function dropdownFilterData(selectionArray) {
         var filterData = data[key];
         return filterData == value;
     })
+    return filteredDropdownData;
+}*/
+
+function dropdownFilterData(selectionArray) {
+    var key = selectionArray[0];
+    var value = selectionArray[1];
+    if(key == "") {
+        filteredDropdownData = dataSet;
+    }
+    else {
+        filteredDropdownData = dataSet.filter(function(data) {
+            var filterData = data[key];
+            return filterData == value;
+        });
+    }
+    
     return filteredDropdownData;
 }
