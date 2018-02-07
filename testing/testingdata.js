@@ -846,4 +846,3 @@ var dataSet = [
       comments: "((HOAX??))  saw a strange object in the night sky"
     }];
 
-module.exports.testData = dataSet;
