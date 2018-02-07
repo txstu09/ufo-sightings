@@ -1,13 +1,13 @@
 var filteredSightings = dataSet;
 var filteredDropdownData = dataSet;
-var dropdownGroups = ["city","state", "country", "shape"];
+var dropdownNames = ["city","state", "country", "shape"];
 
 //var allStates = [...new Set(dataSet.map(item => item.state))];
 //var allCountries = [...new Set(dataSet.map(item => item.country))];
 //var allShapes = [...new Set(dataSet.map(item => item.shape))];
 //var allStates = [...new Set(dataSet.map(item => item.state))];
 var searchGroups = {};
-dropdownGroups.forEach(function(key) {
+dropdownNames.forEach(function(key) {
     let valueList = dataSet.map(obj => obj[key]);
     let uniqueList = Array.from(new Set(valueList));
     uniqueList = uniqueList.sort();
@@ -17,7 +17,7 @@ dropdownGroups.forEach(function(key) {
 
 
 function createDropdowns() {
-    dropdownGroups.forEach(function(item) {
+    dropdownNames.forEach(function(item) {
         var menu = d3.select("#search-menu").append("select")
         
         menu.attr("id", item)
@@ -37,3 +37,15 @@ function createDropdowns() {
     })
 }
 createDropdowns();
+
+function updateDropdowns(selectedValue) {
+    if(selectedValue == "") {
+        filteredDropdownData = dataSet;
+    }
+    else {
+        filteredDropdownData = dataSet.filter(function(data) {
+            var filterData = data[key];
+            return filterData === selectedValue;
+        });
+    }
+}
