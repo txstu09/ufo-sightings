@@ -845,3 +845,5 @@ var dataSet = [
       durationMinutes: "10 seconds",
       comments: "((HOAX??))  saw a strange object in the night sky"
     }];
+
+module.exports.testData = dataSet;

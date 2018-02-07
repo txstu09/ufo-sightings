@@ -79,12 +79,15 @@ function dropdownFilterValue(selectID) {
 }
 
 function onchange() {
+    console.log("this.id " + this.id);
     let filterValue = dropdownFilterValue(this.id);
+    console.log(filterValue);
     let filterData = dropdownFilterData(filterValue);
+    console.log(filterData);
     let dropdownList = dropdownListCreate(filterData);
+    console.log(dropdownList);
     //NOTE: need to delete existing dropdowns before creating new ones, or update existing options...?
     var element = document.getElementById("search-menu");
     element.innerHTML = "";
-    console.log(dropdownList);
     searchDropdown(dropdownList);
 }
