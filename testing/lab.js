@@ -21,7 +21,7 @@ function createDropdowns() {
         var menu = d3.select("#search-menu").append("select")
         
         menu.attr("id", item)
-            //.on("change", onchange)
+            .on("change", onchange)
             .attr("class", "select-dropdown")
             .append("option")
             .attr("value", "")
@@ -38,7 +38,8 @@ function createDropdowns() {
 }
 createDropdowns();
 
-function updateDropdowns(selectedValue) {
+//Place this within onchange func.  Grab select ID in onchange and pass to this func alogn with value
+function filterDropdown(selectedValue, selectedKey) {
     if(selectedValue == "") {
         filteredDropdownData = dataSet;
     }
@@ -48,4 +49,24 @@ function updateDropdowns(selectedValue) {
             return filterData === selectedValue;
         });
     }
+    return filteredDropdownData;
+}
+
+function onchange() {
+    let value = document.getElementById(this.id).value;
+    let key = this.id;
+
+    updateDropdowns(filterDropdown(value, key));
+
+}
+
+function updateDropdowns() {
+    var searchGroups = {};
+    dropdownNames.forEach(function(key) {
+        let valueList = dataSet.map(obj => obj[key]);
+        let uniqueList = Array.from(new Set(valueList));
+        uniqueList = uniqueList.sort();
+        uniqueList.unshift("");
+        searchGroups[key] = uniqueList;
+    })
 }

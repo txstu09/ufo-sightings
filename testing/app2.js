@@ -35,7 +35,7 @@ function dropdownFilterData(selectionArray) {
         });
     }
     
-    return [key, filteredDropdownData];
+    return [filteredDropdownData];
 }
 
 function dropdownListCreate(filterData) {
