@@ -19,29 +19,10 @@ function renderTable() {
             var field = fields[y];
             var $cell = $row.insertCell(y);
             $cell.innerText = sighting[field];
-        }
-    }
+        };
+    };
 }
-/*
-function handleSearch() {
-    var filterDate = $dateInput.value;
-    var filterCity = $cityInput.value.toLowerCase();
 
-    if(filterDate == "" && filterCity == "") {
-        renderTable();
-    }
-    else {
-        filteredSightings = dataSet.filter(function(sighting) {
-            var sightingDate = sighting.datetime;
-            var sightingCity = sighting.city;
-            
-            return sightingDate === filterDate && sightingCity === filterCity;
-        });
-        renderTable();
-    }
-    filteredSightings = dataSet;
-}
-*/
 
 function handleSearch() {
     var filterArray = [{
@@ -69,19 +50,4 @@ function handleSearch() {
     });
     filteredSightings = tableData;
     renderTable();
-    /*
-    if(filterDate == "" && filterCity == "") {
-        renderTable();
-    }
-    else {
-        filteredSightings = dataSet.filter(function(sighting) {
-            var sightingDate = sighting.datetime;
-            var sightingCity = sighting.city;
-            
-            return sightingDate === filterDate && sightingCity === filterCity;
-        });
-        renderTable();
-    }
-    filteredSightings = dataSet;
-    */
 }
