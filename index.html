@@ -14,21 +14,23 @@
             <h1>UFO Sightings!</h1>
         </div>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-2">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="date" placeholder="Date">
+                    <label for="date" class="input-label">Date</label>
+                    <input type="text" class="form-control" id="date" placeholder="m/d/yyyy">
+                    <label for="city" class="input-label">City</label>
+                    <input type="text" class="form-control" id="city" placeholder="city">
+                    <label for="state" class="input-label">State</label>
+                    <input type="text" class="form-control" id="state" placeholder="state">
+                    <label for="country" class="input-label">Country</label>
+                    <input type="text" class="form-control" id="country" placeholder="country">
+                    <label for="shape" class="input-label">Shape</label>
+                    <input type="text" class="form-control" id="shape" placeholder="shape">
                     <a id="search" class="btn btn-primary">Search</a>
+                    <a id="reset" class="btn btn-warning">Reset</a>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="city" placeholder="City">
-                    <a id="search" class="btn btn-primary">Search</a>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-10">
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -46,6 +48,7 @@
                 </table>
             </div>
         </div>
+
     </div>
     <script src="testdata.js" type="text/javascript"></script>
     <script src="app.js" type="text/javascript"></script>

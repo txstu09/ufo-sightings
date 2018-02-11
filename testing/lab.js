@@ -26,7 +26,7 @@ function createDropdowns() {
             .append("option")
             .attr("value", "")
             .attr("selected", "selected")
-            .text("Select " + item);
+            .text("All " + item);
         
         menu.selectAll("option")
             .data(searchGroups[item])
@@ -45,28 +45,43 @@ function filterDropdown(selectedValue, selectedKey) {
     }
     else {
         filteredDropdownData = dataSet.filter(function(data) {
-            var filterData = data[key];
+            var filterData = data[selectedKey];
             return filterData === selectedValue;
         });
     }
-    return filteredDropdownData;
+    return [filteredDropdownData, selectedKey];
 }
 
 function onchange() {
     let value = document.getElementById(this.id).value;
     let key = this.id;
 
-    updateDropdowns(filterDropdown(value, key));
-
+    var filterList = filterDropdown(value, key)
+    updateDropdowns(filterList[0], filterList[1]);
 }
 
-function updateDropdowns() {
+function updateDropdowns(dropdownData, selectedKey) {
     var searchGroups = {};
-    dropdownNames.forEach(function(key) {
-        let valueList = dataSet.map(obj => obj[key]);
+    var newDropdownNames = dropdownNames.filter(function(data) {
+        return selectedKey != data;
+    });
+    newDropdownNames.forEach(function(key) {
+        let valueList = dropdownData.map(obj => obj[key]);
         let uniqueList = Array.from(new Set(valueList));
         uniqueList = uniqueList.sort();
         uniqueList.unshift("");
         searchGroups[key] = uniqueList;
+    })
+    newDropdownNames.forEach(function(item) {
+        var menu = d3.select(`#${item}`)
+        
+        menu.selectAll("option")
+            .data(searchGroups[item])
+            .exit()
+            .remove()
+            .enter()
+            .append("option")
+            .attr("value", d => d)
+            .text(d => d);
     })
 }
