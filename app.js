@@ -1,10 +1,13 @@
 var $tbody = document.querySelector("tbody");
 var $dateInput = document.querySelector("#date");
+var $cityInput = document.querySelector("#city");
 var $searchBtn = document.querySelector("#search");
 
 $searchBtn.addEventListener("click", handleSearch);
 
 var filteredSightings = dataSet;
+
+renderTable();
 
 function renderTable() {
     $tbody.innerHTML = "";
@@ -19,22 +22,66 @@ function renderTable() {
         }
     }
 }
-
+/*
 function handleSearch() {
     var filterDate = $dateInput.value;
-    console.log(filterDate);
-    if(filterDate == "") {
+    var filterCity = $cityInput.value.toLowerCase();
+
+    if(filterDate == "" && filterCity == "") {
         renderTable();
     }
     else {
         filteredSightings = dataSet.filter(function(sighting) {
             var sightingDate = sighting.datetime;
-            //console.log(test);
-            return sightingDate === filterDate;
+            var sightingCity = sighting.city;
+            
+            return sightingDate === filterDate && sightingCity === filterCity;
         });
         renderTable();
     }
     filteredSightings = dataSet;
 }
+*/
 
-renderTable();
+function handleSearch() {
+    var filterArray = [{
+        "key":"datetime",
+        "value":$dateInput.value
+    },{
+        "key":"city",
+        "value":$cityInput.value.toLowerCase()
+    }];
+    
+    var tableData = dataSet;
+
+    filterArray.forEach(input => {
+        var filterKey = input.key;
+        var filterValue = input.value;
+        
+        if(filterValue == "") {
+            return;
+        } else {
+            tableData = tableData.filter(sighting => {
+                return filterValue === sighting[filterKey];
+            });
+        };
+        
+    });
+    filteredSightings = tableData;
+    renderTable();
+    /*
+    if(filterDate == "" && filterCity == "") {
+        renderTable();
+    }
+    else {
+        filteredSightings = dataSet.filter(function(sighting) {
+            var sightingDate = sighting.datetime;
+            var sightingCity = sighting.city;
+            
+            return sightingDate === filterDate && sightingCity === filterCity;
+        });
+        renderTable();
+    }
+    filteredSightings = dataSet;
+    */
+}
